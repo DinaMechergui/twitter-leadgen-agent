@@ -55,7 +55,7 @@ pip install -r requirements.txt
 ---
 4.Configurer les variables d'environnement
 DATABASE_URL=postgresql://postgres:dina1234*@localhost:5432/genie
-TWITTER_BEARER_TOKEN=AAAAAAAAAAAAAAAAAAAAAFhT7AEAAAAA0vPB1VX3H57Q%2BJB4sN%2Fu5OTacVc%3DLuyd5QB6NnnPEqlHPT0FHpPlgR0y4TRSMP7oXQLE5UzlYq0zQP
+TWITTER_BEARER_TOKEN=
 ---
 5.Lancer le backend
 cd backend
