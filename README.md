@@ -48,14 +48,19 @@ python -m venv venv311
 # Linux/macOS
 python -m venv venv311
 source venv311/bin/activate
+---
 3.Installer les dépendances
-Installer les dépendances
+pip install -r requirements.txt
+
+---
 4.Configurer les variables d'environnement
 DATABASE_URL=postgresql://postgres:dina1234*@localhost:5432/genie
 TWITTER_BEARER_TOKEN=AAAAAAAAAAAAAAAAAAAAAFhT7AEAAAAA0vPB1VX3H57Q%2BJB4sN%2Fu5OTacVc%3DLuyd5QB6NnnPEqlHPT0FHpPlgR0y4TRSMP7oXQLE5UzlYq0zQP
+---
 5.Lancer le backend
 cd backend
 uvicorn main:app --reload
+---
 ## Frontend
 Depuis le dossier frontend/twitter-ai-dashboard 
 npm install
