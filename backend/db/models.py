@@ -16,9 +16,9 @@ class Lead(Base):
     reply = Column(Boolean, default=False)
     converted = Column(Boolean, default=False)
     score = Column(Integer, default=0)
-    likes = Column(Integer, default=0)      # <-- ajouter
+    likes = Column(Integer, default=0)     
     retweets = Column(Integer, default=0)  
-    clicks = Column(Integer, default=0)  # <-- ajouter
+    clicks = Column(Integer, default=0)  
 
 
 class TweetIdea(Base):
