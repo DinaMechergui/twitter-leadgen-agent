@@ -1,6 +1,7 @@
 # backend/main.py
 # Fichier principal FastAPI pour le backend
 
+from http.client import HTTPException
 from fastapi import BackgroundTasks, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import desc, func
@@ -200,3 +201,33 @@ def add_username(request: AddUsernameRequest):
     save_leads(tweets_data, username)
 
     return {"message": f"{len(tweets_data)} tweets ajoutés pour {username}"}
+
+
+@app.delete("/api/users/{username}")
+def delete_user(username: str):
+    """
+    Supprime tous les leads d'un utilisateur donné
+    """
+    session = SessionLocal()
+    try:
+        deleted_count = session.query(Lead).filter(Lead.username == username).delete()
+        session.commit()
+        if deleted_count == 0:
+            raise HTTPException(status_code=404, detail=f"Aucun lead trouvé pour {username}")
+        return {"message": f"{deleted_count} leads supprimés pour {username}"}
+    finally:
+        session.close()
+
+@app.get("/api/users")
+def get_users():
+    """
+    Retourne la liste de tous les utilisateurs suivis (username uniques)
+    """
+    session = SessionLocal()
+    try:
+        # Récupère tous les usernames uniques dans la table Lead
+        usernames = session.query(Lead.username).distinct().all()
+        # usernames est une liste de tuples comme [('elonmusk',), ('nasa',)]
+        return [{"username": u[0]} for u in usernames]
+    finally:
+        session.close()
